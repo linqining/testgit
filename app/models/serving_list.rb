@@ -1,0 +1,3 @@
+class ServingList < ApplicationRecord
+
+end

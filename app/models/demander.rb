@@ -1,0 +1,2 @@
+class Demander < ApplicationRecord
+end

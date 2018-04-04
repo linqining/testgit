@@ -1,0 +1,2 @@
+class DeviceStatus < ApplicationRecord
+end

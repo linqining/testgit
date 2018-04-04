@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-sm-2">
+  </div>
+  <div class="col-sm-7">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <i class="fa fa-comments fa-fw"></i> Chat
+        <div class="btn-group pull-right">
+          <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-chevron-down"></i>
+          </button>
+          <ul class="dropdown-menu slidedown">
+            <li>
+                <i class="fa fa-times"></i> 退出聊天
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <!--Widget body-->
+        <div id="demo-chat-body" class="collapse in">
+          <div class="nano has-scrollbar" style="height:375px">
+            <div class="nano-content pad-all" tabindex="0" style="right: -17px;">
+              <ul class="list-unstyled media-block">
+                <%= sync partial: 'message_row', collection: Message.by_device(@device), refetch: true %>
+                <%= sync_new partial: 'message_row', resource: Message.new, scope: Message.by_device(@device), refetch: true %>
+              </ul>
+            </div>
+            <div class="nano-pane">
+              <div class="nano-slider" style="height: 141px; transform: translate(0px, 0px);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <%= form_for @new_message, remote: true do |f| %>
+          <div class="input-group">
+            <%= f.text_field :body, class: "form-control input-sm", placeholder: "Type your message here..." %>
+            <span class="input-group-btn"> <%= f.submit "发送", class: "btn btn-warning btn-sm" %> </span>
+            <%= hidden_field_tag :deviceid , @device.id %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+  </div>
+</div>
+
+
